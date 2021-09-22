@@ -1,15 +1,15 @@
-import { FirebaseStorageError, StorageReference, getDownloadURL } from 'firebase/storage';
+import { StorageError, StorageReference, getDownloadURL } from 'firebase/storage';
 import { useEffect } from 'react';
 import { LoadingHook, useComparatorRef, useLoadingValue } from '../util';
 
-export type DownloadURLHook = LoadingHook<string, FirebaseStorageError>;
+export type DownloadURLHook = LoadingHook<string, StorageError>;
 
 export default (
   storageRef?: StorageReference | null
 ): DownloadURLHook => {
   const { error, loading, reset, setError, setValue, value } = useLoadingValue<
     string,
-    FirebaseStorageError
+    StorageError
   >();
   const ref = useComparatorRef(storageRef, isEqual, reset);
 
